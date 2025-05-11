@@ -172,4 +172,8 @@ Then create the CHM via:
 python gdal_calc.py -A output/dsm_0_25m.tif -B output/dtm_0_25m.tif --calc="A-B" --outfile=output/chm_0_25m.tif --NoDataValue=-9999
 ```
 
+## Generate basic stats
+
+Run the notebook `metrics.ipynb`
+
 
