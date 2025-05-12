@@ -1,11 +1,12 @@
 # work plan
 
-## 
+## Tasks
 - [ ] Implement the ground filter pipe as per this: https://pdal.io/en/stable/tutorial/ground-filters.html
 - [ ] Tune the SMRF filter params
 - [ ] Run a selection on multiple las files - routine to select the 1000m plots which are on the rehab
 - [ ] Tune and ground-truth the other parts of the CHM pipe
 - [ ] Run across multiple time periods, create the time series of metrics
+- [ ] segment the results by the planting domains
 
 
 
