@@ -1,12 +1,15 @@
 # work plan
 
 ## Tasks
+- [ ] move the piepline into a notebook using the python bindings for pdal
 - [ ] Implement the ground filter pipe as per this: https://pdal.io/en/stable/tutorial/ground-filters.html
 - [ ] Tune the SMRF filter params
 - [ ] Run a selection on multiple las files - routine to select the 1000m plots which are on the rehab
 - [ ] Tune and ground-truth the other parts of the CHM pipe
 - [ ] Run across multiple time periods, create the time series of metrics
 - [ ] segment the results by the planting domains
+- [ ] See if there is value in the clipped 1000m set which has ground/low/med/high veg already in there - can I create a DTM from this? Is this better than my ground detection model?
+
 
 
 

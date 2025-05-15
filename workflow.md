@@ -5,7 +5,7 @@
 ```cmd.exe
 micromamba.exe create -n geo_env -c conda-forge pdal gdal rasterio laspy[lazrs,laszip] lazrs-python pandas matplotlib numpy jupyter python=3.12 --yes
 micromamba shell init --shell cmd.exe --root-prefix=C:\Users\<username>\micromamba
-micromamba shell init --shell cmd.exe --root-prefix=C:\Users\<username>\micromamba
+micromamba activate geo_env
 ```
 
 ## Tile & Index the LiDAR Data
