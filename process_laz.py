@@ -17,7 +17,8 @@ excluded_files = ['297000_6425000.las']
 output_filename = "output\\2025_03_combined.laz"
 output_filename_copc = "output\\2025_03_combined.copc.laz"
 
-root_dir = "L:\\SURVEY\\08 - Projects & Photos\\LiDAR surveys\\2024-2025\\MAR25\\Ground Only (all)\\Clipped_1000m"
+# root_dir = "L:\\SURVEY\\08 - Projects & Photos\\LiDAR surveys\\2024-2025\\MAR25\\Ground Only (all)\\Clipped_1000m"
+root_dir = "intput\\rehab"
 
 las_files = []
 for x in range(min_x, max_x+step, step):
