@@ -1,7 +1,13 @@
 # work plan
 
 ## Tasks
-- [ ] move the piepline into a notebook using the python bindings for pdal
+- [ ] process the large las files into one using an iterative/append method
+- [ ] add HeightAboveGround to the laz as a param
+- [ ] Generate the DTM and DSM rasters
+- [ ] Generate a CHM raster
+- [ ] import the rehab domains and understand how masking works
+- [ ] allocate the domains to the point cloud and chm (if that makes sense)
+- [x] move the piepline into a notebook using the python bindings for pdal
 - [ ] Implement the ground filter pipe as per this: https://pdal.io/en/stable/tutorial/ground-filters.html
 - [ ] Tune the SMRF filter params
 - [ ] Run a selection on multiple las files - routine to select the 1000m plots which are on the rehab
