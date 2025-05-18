@@ -1,0 +1,46 @@
+{
+    "pipeline": [
+      {
+        "type": "readers.las",
+        "filename": "input/rehab_sample.las"
+      },
+      { 
+        "type": "filters.reprojection", 
+        "in_srs": "EPSG:7856", 
+        "out_srs": "EPSG:7856"
+      },
+      {
+        "type": "filters.assign",
+        "assignment": "Classification[:]=0"
+      },
+      {
+        "type": "filters.smrf",
+        "ignore": "Classification[7:7]",
+        "window": 18.0,
+        "slope": 0.2,
+        "threshold": 0.5,
+        "scalar": 1.25
+      },
+      {
+        "type": "filters.hag_nn"
+      },
+      { 
+        "type": "filters.stats",
+        "dimensions": "Classification" 
+      },
+      {
+        "type": "writers.las",
+        "filename": "output/rehab_sample_hag.las",
+        "minor_version": 4,
+        "dataformat_id": 6,
+        "extra_dims": "HeightAboveGround=float32" 
+      },
+      {
+        "type": "writers.copc",
+        "filename": "output\\rehab.copc.laz",
+        "extra_dims": "HeightAboveGround=float32" 
+      }
+    ]
+    , "num_threads": 12
+  }
+  

@@ -1,0 +1,8 @@
+[
+    { "type":"readers.las",  "filename":"output/rehab_sample_hag.laz" },
+    { "type":"writers.gdal",
+      "filename":"output/count_01.tif",
+      "resolution":0.1,
+      "output_type":"count" }
+  ]
+  

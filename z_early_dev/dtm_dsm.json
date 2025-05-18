@@ -1,0 +1,26 @@
+[
+    {                                   // read the height‑normalised cloud
+      "type": "readers.las",
+      "filename": "output/rehab_sample_hag.laz"
+    },
+  
+    {                                   // 1️⃣  DSM – max Z per 1 m cell
+      "type": "writers.gdal",
+      "filename": "output/dsm_0_25m.tif",
+      "resolution": 0.25,
+      "output_type": "max"              // top‑of‑canopy/ground
+    },
+  
+    {                                   // keep only ground returns (Class 2)
+      "type": "filters.range",
+      "limits": "Classification[2:2]"
+    },
+  
+    {                                   // 2️⃣  DTM – min Z of ground points
+      "type": "writers.gdal",
+      "filename": "output/dtm_0_25m.tif",
+      "resolution": 0.25,               // used histogram technique from https://chatgpt.com/c/681fdf43-d69c-800d-a2ae-79417743ab02
+      "output_type": "min"              // bare‑earth surface
+    }
+]
+  

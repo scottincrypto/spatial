@@ -1,0 +1,15 @@
+{
+    "pipeline":[
+      { "type":"readers.las",
+        "filename":"input\\rehab_sample.las" },
+  
+      { "type":"filters.reprojection",
+        "out_srs":"EPSG:7856" },
+  
+      { "type":"writers.ept_addon",
+        "filename":"rehab_sample_ept",
+        "resolution": 1.0,
+        "workers": 8 }
+    ]
+  }
+  

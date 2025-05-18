@@ -1,0 +1,20 @@
+{
+    "pipeline": [
+        {
+            "type": "readers.las",
+            "filename": "output\\2025_03_combined.laz"
+        },
+        {
+            "type": "readers.las",
+            "filename": "input\\rehab\\296000_6427000.las"
+        },
+        {
+            "type": "filters.merge"
+        },
+        {
+            "type": "writers.las",
+            "filename": "output\\2025_03_combined_stream.laz",
+            "compression": "laszip"
+        }
+    ]
+}
