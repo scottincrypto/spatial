@@ -80,7 +80,7 @@ pipeline_json["pipeline"].append({
 print(json.dumps(pipeline_json, indent=4))
 
 p = pdal.Pipeline(json.dumps(pipeline_json))
-run_pipe_with_time(p, streaming=True, chunk_size=10000)
+# run_pipe_with_time(p, streaming=True, chunk_size=10000)
 
 # this takes forever - use qgis - loading as a layer auto creates the copc
 # # write out to copc

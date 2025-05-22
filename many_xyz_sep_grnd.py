@@ -26,10 +26,10 @@ def run_pipe_with_time(pipeline, streaming=False, chunk_size=10000):
 # this file processes laz files which are in the format of ground and non-ground
 #############################################
 
-
-input_dir = os.path.join("input", "lidar", "2024-07-29")
-ground_dir = os.path.join(input_dir, "Ground", "LAS")
-non_ground_dir = os.path.join(input_dir, "Non-Ground", "LAS")
+# todo: change reader to text, add headers, change pipe to classify ground as ground
+input_dir = os.path.join("input", "lidar", "2021-12-15")
+ground_dir = os.path.join(input_dir, "Ground")
+non_ground_dir = os.path.join(input_dir, "Non-Ground")
 output_dir = os.path.join("output", "processed", os.path.basename(input_dir))
 output_filename = os.path.join(output_dir, "lidar_combined.laz")
 
@@ -65,7 +65,7 @@ las_files = []
 for dirs in [ground_dir, non_ground_dir]:
     for f in os.listdir(dirs):
         # check if the file is a .las file
-        if f.endswith('.las') and f.startswith(tuple(included_prefixes)):
+        if f.endswith('.xyz') and f.startswith(tuple(included_prefixes)):
             # create the file path
             file_path = os.path.join(dirs, f)
             las_files.append(file_path)
