@@ -16,100 +16,19 @@ Two options:
 - Cloud Optimised Point Cloud (COPC)
 - Entwine Point Tile (EPT)
 
+### Merge LAS to single LAZ
+Merge the LAS files into a single LAZ using the many_laz.py script
+Edit the script to point at the correct folders
 
-### Entwine Point Tile (EPT)
-```bash
-# Build an EPT pyramid from every LAZ in ./input
-entwine build 
-    -i "./input/**/*.laz" \      # input files (wild‑cards / recursive)
-    -o "./rehab_ept" \           # output folder that will contain ept.json, data/, ...
-    --srs EPSG:7856 \            # set output CRS (GDA2020 / MGA Zone 56, metres)
-    --resolution 1 \             # target voxel size ≈ mean point spacing (1 m here)
-    --threads 8                  # parallel CPU threads
-entwine build -i "input\rehab_sample.las" -o "output\rehab_ept" --srs EPSG:7856 --resolution 1 --threads 12
-```
 
 
 ### Cloud Optimised Point Cloud (COPC)
-```bash
-# Merge every LAZ in the folder and write a spatially‑indexed COPC
-pdal pipeline copc_convert.json
-```
-using the json file:
-```json
-{
-    "pipeline": [
-      "input\\rehab_sample.las",
-      {
-        "type": "filters.reprojection",
-        "in_srs": "EPSG:7856",
-        "out_srs": "EPSG:7856"
-      },
-      {
-        "type": "writers.copc",
-        "filename": "output\\rehab.copc.laz"
-      }
-    ],
-    "num_threads": 12
-}
-```
+Open the file in QGIS.
+QGIS will build a copc file with the same name `.copc.laz`
+Confirm classifications & other metadata
 
-This is now intergrated into the HAG pipeline
 
-## Classify the ground & compute HAG
 
-```json
-{
-    "pipeline": [
-      {
-        "type": "readers.las",
-        "filename": "input/rehab_sample.las"
-      },
-      { 
-        "type": "filters.reprojection", 
-        "in_srs": "EPSG:7856", 
-        "out_srs": "EPSG:7856"
-      },
-      {
-        "type": "filters.assign",
-        "assignment": "Classification[:]=0"
-      },
-      {
-        "type": "filters.smrf",
-        "ignore": "Classification[7:7]",
-        "window": 18.0,
-        "slope": 0.2,
-        "threshold": 0.5,
-        "scalar": 1.25
-      },
-      {
-        "type": "filters.hag_nn"
-      },
-      { 
-        "type": "filters.stats",
-        "dimensions": "Classification" 
-      },
-      {
-        "type": "writers.las",
-        "filename": "output/rehab_sample_hag.las",
-        "minor_version": 4,
-        "dataformat_id": 6,
-        "extra_dims": "HeightAboveGround=float32" 
-      },
-      {
-        "type": "writers.copc",
-        "filename": "output\\rehab.copc.laz",
-        "extra_dims": "HeightAboveGround=float32" 
-      }
-    ]
-    , "num_threads": 12
-  }
-  
-  
-```
-```bash
-pdal pipeline ground_hag_pipeline.json
-```
 
 ## Generate the DSM, DTM & CHM
 DTM (digital terrain model) - bare earth surface
@@ -180,6 +99,8 @@ Then create the CHM via:
 ```python
 python gdal_calc.py -A output/dsm_0_25m.tif -B output/dtm_0_25m.tif --calc="A-B" --outfile=output/chm_0_25m.tif --NoDataValue=-9999
 ```
+
+This is now done in `generate_rasters.ipynb`
 
 ## Generate basic stats
 
