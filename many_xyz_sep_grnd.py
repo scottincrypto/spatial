@@ -147,12 +147,14 @@ def generate_pdal_pipeline(non_ground_files, ground_files, output_file):
     for i, ng_file in enumerate(non_ground_files):
         reader_tag = generate_tag("ng", i)
         pipeline.append({
-            "type": "readers.las",
+            "type": "readers.text",
             "filename": ng_file,
+            "spatialreference": "EPSG:7856",
+            "header": "X Y Z",
         })
         pipeline.append({
             "type": "filters.assign",
-            "assignment": "Classification[:]=4",
+            "value": "Classification=4",
             "tag": reader_tag
         })
         input_tags.append(reader_tag)
@@ -161,8 +163,14 @@ def generate_pdal_pipeline(non_ground_files, ground_files, output_file):
     for i, g_file in enumerate(ground_files):
         tag = generate_tag("g", i)
         pipeline.append({
-            "type": "readers.las",
+            "type": "readers.text",
             "filename": g_file,
+            "spatialreference": "EPSG:7856",
+            "header": "X Y Z",
+        })
+        pipeline.append({
+            "type": "filters.assign",
+            "value": "Classification=2",
             "tag": tag
         })
         input_tags.append(tag)
@@ -188,4 +196,4 @@ pipeline_json = generate_pdal_pipeline(non_ground_files, ground_files, output_fi
 pipe = pipeline_json
 print(json.dumps(pipe, indent=4))
 p = pdal.Pipeline(json.dumps(pipe))
-# run_pipe_with_time(p, streaming=True, chunk_size=10000)
+run_pipe_with_time(p, streaming=True, chunk_size=10000)
