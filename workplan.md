@@ -1,19 +1,26 @@
 # work plan
 
 ## Tasks
+- [x] reprocess the laz files to add hAG - once-off for the existing files
+- [x] add the hag detect routine to the existing pipelines
+- [x] refactor the existing pipelines into one file for merging las/xyz files
+- [x] elementary viz on the stats so far
+- [ ] Implement a few stem count methods
+- [ ] import the stem counts from the rehab report
+- [ ] validate the stem count methods against the rehab report
 - [x] process the large las files into one using an iterative/append method
 - [x] Generate the DTM and DSM rasters
 - [x] Generate a CHM raster
-- [ ] import the rehab domains and understand how masking works
-- [ ] allocate the domains to the point cloud and chm (if that makes sense)
+- [x] import the rehab domains and understand how masking works
+- [x] allocate the domains to the point cloud and chm (if that makes sense)
 - [x] move the piepline into a notebook using the python bindings for pdal
 - [x] Implement the ground filter pipe as per this: https://pdal.io/en/stable/tutorial/ground-filters.html - not yet, use the provided ground class
 - [x] Tune the SMRF filter params - not yet, use provided ground class
 - [x] Run a selection on multiple las files - routine to select the 1000m plots which are on the rehab
 - [ ] Tune and ground-truth the other parts of the CHM pipe
-- [ ] Run across multiple time periods, create the time series of metrics
-- [ ] segment the results by the planting domains
-- [ ] See if there is value in the clipped 1000m set which has ground/low/med/high veg already in there - can I create a DTM from this? Is this better than my ground detection model?
+- [x] Run across multiple time periods, create the time series of metrics
+- [x] segment the results by the planting domains
+- [x] See if there is value in the clipped 1000m set which has ground/low/med/high veg already in there - can I create a DTM from this? Is this better than my ground detection model?
 
 
 
